@@ -1,0 +1,4 @@
+# Relevant Zabbix Agent 2 settings for app01
+Server=10.30.0.10
+ServerActive=10.30.0.10
+Hostname=app01

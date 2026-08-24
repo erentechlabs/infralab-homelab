@@ -1,0 +1,10 @@
+[Unit]
+Description=Run InfraLab Update Check Daily
+
+[Timer]
+OnCalendar=*-*-* 03:30:00
+Persistent=true
+Unit=infralab-update-check.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,6 @@
+[Unit]
+Description=InfraLab Update Check
+
+[Service]
+Type=oneshot
+ExecStart=/opt/infralab/scripts/update-check.sh

@@ -1,0 +1,25 @@
+# /etc/network/interfaces
+# Sanitized example for lab-router.
+
+auto lo
+iface lo inet loopback
+
+# VMware NAT / management-facing interface
+allow-hotplug ens18
+iface ens18 inet dhcp
+
+# Internal VLAN trunk
+auto ens19
+iface ens19 inet manual
+
+# VLAN 20 - Servers
+auto ens19.20
+iface ens19.20 inet static
+    address 10.20.0.1/24
+    vlan-raw-device ens19
+
+# VLAN 30 - Monitoring
+auto ens19.30
+iface ens19.30 inet static
+    address 10.30.0.1/24
+    vlan-raw-device ens19

@@ -1,0 +1,10 @@
+[Unit]
+Description=Run InfraLab Health Check Daily
+
+[Timer]
+OnCalendar=*-*-* 03:00:00
+Persistent=true
+Unit=infralab-health.service
+
+[Install]
+WantedBy=timers.target

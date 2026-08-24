@@ -1,0 +1,6 @@
+[Unit]
+Description=InfraLab Configuration Backup
+
+[Service]
+Type=oneshot
+ExecStart=/opt/infralab/scripts/config-backup.sh

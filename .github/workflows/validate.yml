@@ -1,0 +1,36 @@
+name: Validate InfraLab
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install validation tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck nftables
+
+      - name: Validate Bash syntax
+        run: |
+          bash -n scripts/health-check.sh
+          bash -n scripts/config-backup.sh
+          bash -n scripts/update-check.sh
+
+      - name: Run ShellCheck
+        run: shellcheck scripts/*.sh
+
+      - name: Validate nftables syntax
+        run: sudo nft -c -f configs/nftables/nftables.conf.example
+
+      - name: Validate relative Markdown links
+        run: python3 tools/check_relative_links.py

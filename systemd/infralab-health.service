@@ -1,0 +1,6 @@
+[Unit]
+Description=InfraLab Health Check
+
+[Service]
+Type=oneshot
+ExecStart=/opt/infralab/scripts/health-check.sh

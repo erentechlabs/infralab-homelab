@@ -1,0 +1,50 @@
+#!/usr/sbin/nft -f
+
+flush ruleset
+
+table inet filter {
+    chain input {
+        type filter hook input priority 0;
+        policy accept;
+    }
+
+    chain forward {
+        type filter hook forward priority 0;
+        policy drop;
+
+        ct state established,related accept
+        ip protocol icmp accept
+
+        # Application VLAN -> Zabbix server (active checks)
+        ip saddr 10.20.0.0/24 ip daddr 10.30.0.10 tcp dport 10051 accept
+
+        # Zabbix server -> application agents
+        ip saddr 10.30.0.10 ip daddr 10.20.0.0/24 tcp dport 10050 accept
+
+        # Keep workload networks away from the management subnet
+        ip saddr 10.20.0.0/24 ip daddr 192.168.74.0/24 drop
+        ip saddr 10.30.0.0/24 ip daddr 192.168.74.0/24 drop
+
+        # Internet access
+        ip saddr 10.20.0.0/24 oifname "ens18" accept
+        ip saddr 10.30.0.0/24 oifname "ens18" accept
+
+        # Management network -> Zabbix web frontend
+        ip saddr 192.168.74.0/24 ip daddr 10.30.0.10 tcp dport 8080 accept
+    }
+
+    chain output {
+        type filter hook output priority 0;
+        policy accept;
+    }
+}
+
+table ip nat {
+    chain postrouting {
+        type nat hook postrouting priority srcnat;
+        policy accept;
+
+        oifname "ens18" ip saddr 10.20.0.0/24 ip daddr != 192.168.74.0/24 masquerade
+        oifname "ens18" ip saddr 10.30.0.0/24 ip daddr != 192.168.74.0/24 masquerade
+    }
+}
