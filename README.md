@@ -406,7 +406,7 @@ This repository is the concise technical side of the project.
 
 The long-form article documents the full path from VMware and Proxmox installation through VLAN design, monitoring, mistakes, packet captures, firewall debugging, failure simulation, automation, and final reboot validation.
 
-The accompanying long-form article is still being prepared. This section will be updated with its URL when it is published.
+**Blog:** [Building a Segmented Proxmox Homelab with VLANs, nftables, and Zabbix](https://www.compilemymind.com/posts/building-a-segmented-proxmox-homelab-with-vlans-nftables-and-zabbix/)
 
 ---
 

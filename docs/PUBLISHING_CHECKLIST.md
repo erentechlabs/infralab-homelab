@@ -2,7 +2,7 @@
 
 Before the first push:
 
-- [ ] Add the published blog URL to `README.md` when it is available.
+- [x] Add the published blog URL to `README.md` when it is available.
 - [ ] Confirm the GitHub repository is named `infralab-homelab`, or update the workflow badge URL.
 - [ ] Run `make validate`.
 - [ ] Review all screenshots one last time for unrelated personal information.
