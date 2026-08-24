@@ -1,8 +1,7 @@
 # Sanitized Zabbix server database settings.
-# Never commit the real DB password.
+# Define DBPassword only in the deployed configuration.
 
 DBHost=127.0.0.1
 DBName=zabbix
 DBUser=zabbix
-DBPassword=<REPLACE_WITH_SECRET>
 DBPort=5432

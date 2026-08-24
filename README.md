@@ -313,11 +313,8 @@ More screenshots: **[Screenshot gallery](docs/screenshots/README.md)**
 infralab-homelab/
 ├── README.md
 ├── LICENSE
-├── CHANGELOG.md
-├── SECURITY.md
 ├── .gitignore
 ├── .gitattributes
-├── Makefile
 │
 ├── configs/
 │   ├── network/
@@ -369,7 +366,7 @@ The repository contains **sanitized examples**, not a production deployment scri
 Before reusing them:
 
 1. review interface names and addresses for your environment;
-2. replace placeholders rather than committing credentials;
+2. keep credentials in a protected local configuration rather than in the repository;
 3. validate firewall rules before applying them remotely;
 4. test changes from a local console when there is a risk of locking yourself out;
 5. keep management networks separate from workload networks.
@@ -382,21 +379,14 @@ sudo nft -c -f configs/nftables/nftables.conf.example
 python3 tools/check_relative_links.py
 ```
 
-Or:
-
-```bash
-make validate
-```
-
 ---
 
-## Security
+## Security Notes
 
-No real passwords, database credentials, private keys, API tokens, cookies, or session data are intentionally stored in this repository.
-
-RFC1918 addresses are preserved because they are part of the documented lab topology.
-
-See [`SECURITY.md`](SECURITY.md).
+- Configurations are sanitized examples.
+- No passwords, private keys, tokens, cookies, or session data are included.
+- RFC1918 addresses are intentionally preserved for topology documentation.
+- Firewall rules must be reviewed before reuse in another environment.
 
 ---
 
@@ -409,10 +399,6 @@ The long-form article documents the full path from VMware and Proxmox installati
 **Blog:** [Building a Segmented Proxmox Homelab with VLANs, nftables, and Zabbix](https://www.compilemymind.com/posts/building-a-segmented-proxmox-homelab-with-vlans-nftables-and-zabbix/)
 
 ---
-
-## Topics
-
-`proxmox` · `homelab` · `linux` · `networking` · `vlan` · `nftables` · `zabbix` · `systemd` · `infrastructure` · `devops`
 
 ## License
 
